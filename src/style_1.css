@@ -81,12 +81,17 @@ h2 {
 h3{
     font-size: 30px;
 }
-.entry-area {
+/*.entry-area {
     display: flex;
     height: 100%;
     justify-content: space-between;
     align-items: center;
+}*/
+
+.entry-area{
+    display: flex;
 }
+
 .entry-text {
     margin-left: 80px;
     margin-bottom: 200px;
@@ -360,4 +365,16 @@ a {
     .nav {
         max-width: 100%;
     }
+}
+
+
+/*Login + Sign Up form*/
+form {
+    padding: 0 50px;
+    border: 2px solid #F1ECCE;
+    border-radius: 4px;
+}
+
+form > div> a{
+    font-size: .5em;
 }
