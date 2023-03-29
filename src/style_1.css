@@ -437,3 +437,15 @@ form > div > button{
         height: 20%;
     }
 }
+
+/*preventing overflow of form*/
+@media only screen and (max-width: 640px){
+    #logTitle, #signTitle{
+        margin-top: 0;
+    }
+
+    #mainForm{
+        margin-top: 3%;
+        padding-bottom: 5px;
+    }
+}
