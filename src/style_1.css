@@ -367,14 +367,46 @@ a {
     }
 }
 
+/*main title*/
+#logTitle{
+    margin-top: 100px
+}
 
 /*Login + Sign Up form*/
 form {
-    padding: 0 50px;
+    padding: 50px;
     border: 2px solid #F1ECCE;
     border-radius: 4px;
 }
 
 form > div> a{
     font-size: .5em;
+    text-decoration: underline;
+}
+
+#logForm{
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+form > div > input{
+    width: 100%;
+    height: 40px;
+}
+
+#pass{
+    margin-top: 50px;
+}
+
+form > button{
+    background-color:#F1ECCE;
+}
+
+/*remove margin for form when screen is smaller*/
+@media only screen and (max-width: 1000px){
+
+    #logForm{
+       margin: auto;
+       margin-top: 7%;
+    }
 }
