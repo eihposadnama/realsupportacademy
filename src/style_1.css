@@ -368,8 +368,13 @@ a {
 }
 
 /*main title*/
-#logTitle{
-    margin-top: 100px
+#logTitle, #signTitle{
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+#signTitle{
+    width: 150%;
 }
 
 /*Login + Sign Up form*/
@@ -380,12 +385,12 @@ form {
 }
 
 form > div> a{
-    font-size: .5em;
+    font-size: 15px;
     text-decoration: underline;
+    text-align: center;
 }
 
-#logForm{
-    margin-left: 25%;
+#mainForm{
     margin-top: 5%;
 }
 
@@ -398,15 +403,37 @@ form > div > input{
     margin-top: 50px;
 }
 
-form > button{
+form > div > button{
     background-color:#F1ECCE;
+    border:none;
+    border-radius: 8px;
+    width: 100%;
+    height: 30px;
+    font-size:20px;
+}
+
+#btn{
+    margin: auto;
+    width: 50%;
 }
 
 /*remove margin for form when screen is smaller*/
 @media only screen and (max-width: 1000px){
 
-    #logForm{
+    #mainForm{
        margin: auto;
        margin-top: 7%;
+    }
+}
+
+/*on a screen bigger than 100*/
+@media only screen and (min-width: 1000px){
+
+    #mainForm{
+        margin-left: 25%;
+        margin-top: 5%;
+        margin-right: 5%;
+        width: 30%;
+        height: 20%;
     }
 }
