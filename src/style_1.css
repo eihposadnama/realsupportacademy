@@ -367,14 +367,85 @@ a {
     }
 }
 
+/*main title*/
+#logTitle, #signTitle{
+    margin-top: 100px;
+    margin-right: 100px;
+}
+
+#signTitle{
+    width: 150%;
+}
 
 /*Login + Sign Up form*/
 form {
-    padding: 0 50px;
+    padding: 50px;
     border: 2px solid #F1ECCE;
     border-radius: 4px;
 }
 
 form > div> a{
-    font-size: .5em;
+    font-size: 15px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+#mainForm{
+    margin-top: 5%;
+}
+
+form > div > input{
+    width: 100%;
+    height: 40px;
+}
+
+#pass{
+    margin-top: 50px;
+}
+
+form > div > button{
+    background-color:#F1ECCE;
+    border:none;
+    border-radius: 8px;
+    width: 100%;
+    height: 30px;
+    font-size:20px;
+}
+
+#btn{
+    margin: auto;
+    width: 50%;
+}
+
+/*remove margin for form when screen is smaller*/
+@media only screen and (max-width: 1000px){
+
+    #mainForm{
+       margin: auto;
+       margin-top: 7%;
+    }
+}
+
+/*on a screen bigger than 100*/
+@media only screen and (min-width: 1000px){
+
+    #mainForm{
+        margin-left: 25%;
+        margin-top: 5%;
+        margin-right: 5%;
+        width: 30%;
+        height: 20%;
+    }
+}
+
+/*preventing overflow of form*/
+@media only screen and (max-width: 640px){
+    #logTitle, #signTitle{
+        margin-top: 0;
+    }
+
+    #mainForm{
+        margin-top: 3%;
+        padding-bottom: 5px;
+    }
 }
