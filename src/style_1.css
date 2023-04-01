@@ -41,7 +41,7 @@ img{
 
 .entry {
     background-color: #0E131F;
-    height: 100vh;
+    height: 120vh;
     color: #F1ECCE;
     font-size: 40px;
 }
@@ -256,6 +256,7 @@ a {
     display: flex;
     padding: 40px;
 }
+
 @media only screen and (max-width: 1000px) {
     .project-container {
         display: flex;
@@ -417,12 +418,18 @@ form > div > button{
     width: 50%;
 }
 
+.switch, #help{
+    height: 50px;
+    text-align: center;
+}
+
 /*remove margin for form when screen is smaller*/
 @media only screen and (max-width: 1000px){
 
     #mainForm{
        margin: auto;
        margin-top: 7%;
+       padding-bottom: 25px;
     }
 }
 
@@ -431,21 +438,22 @@ form > div > button{
 
     #mainForm{
         margin-left: 25%;
-        margin-top: 5%;
+        margin-top: 3%;
         margin-right: 5%;
         width: 30%;
-        height: 20%;
+        height: 25%;
+        padding-bottom: 25px;
     }
 }
 
 /*preventing overflow of form*/
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 750px){
     #logTitle, #signTitle{
         margin-top: 0;
     }
 
     #mainForm{
-        margin-top: 3%;
-        padding-bottom: 5px;
+        margin-top: 2%;
+        padding-bottom: 10px;
     }
 }
