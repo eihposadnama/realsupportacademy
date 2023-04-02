@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
+//import {Link} from "react-router-dom";
 //import '@/styles/globals.css'
 //import '@/styles/style_1.css'
 
@@ -12,10 +14,10 @@ export default function Home() {
                     <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
                 </a>
                 <ul className = "nav" id = "navlist">
-                    <li><a href="#about-us">About Us</a></li>
-                    <li><a href="#Courses">Courses</a></li>
-                    <li><a href="login.jsx">Login</a></li>
-                    <li><a href="#Contact">Contact</a></li>
+                    <li><Link href="#about-us">About Us</Link></li>
+                    <li><Link href="#Courses">Courses</Link></li>
+                    <li><Link href="/login">Login</Link></li>
+                    <li><Link href="#Contact">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
                     <i className="fas fa-bars"></i>
