@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Script from 'next/script';
+//import { HashLink } from 'react-router-hash-link';
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,10 +18,15 @@ export default function Home() {
                     <li><a href="src/media.html">Media</a></li>
                     <li><a href="/index.jsx#Contact">Contact</a></li>*/}
 
-                    <li><Link href="/index#about-us">About Us</Link></li>
-                    <li><Link href="/index#Courses">Courses</Link></li>
+                    {/*<li><HashLink to="/index#about-us">About Us</HashLink></li>
+                    <li><HashLink to="/index#Courses">Courses</HashLink></li>
                     <li><Link href="/signUp">Sign Up</Link></li>
-                    <li><Link href="/index#Contact">Contact</Link></li>
+                    <li><HashLink to="/index#Contact">Contact</HashLink></li>*/}
+
+                    <li><Link href="/index">About Us</Link></li>
+                    <li><Link href="/index">Courses</Link></li>
+                    <li><Link href="/signUp">Sign Up</Link></li>
+                    <li><Link href="/index">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
                     <i className="fas fa-bars"></i>
@@ -40,7 +47,7 @@ export default function Home() {
 
                     <div id="btn"><button type="submit" id="inner-btn">LOGIN</button></div>
                     <div><Link href="/signUp">Don&apos;t have an account yet?</Link></div>
-                </form>
+                </form>    
             </div>
 
         
@@ -51,7 +58,7 @@ export default function Home() {
         </footer>
 
 
-        {/* <script src="src/app.js"></script> */}
+        <Script src="src/app.js"></Script> 
     </>
       
     )

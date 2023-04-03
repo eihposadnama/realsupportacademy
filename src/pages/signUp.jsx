@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Inter } from 'next/font/google'
+import Script from 'next/script';
+import { Inter } from 'next/font/google';
+//import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
 //import '@/styles/globals.css'
@@ -14,10 +16,17 @@ export default function Home() {
                 <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
                 </a>
                 <ul className = "nav" id = "navlist">
-                <li><Link href="/index#about-us">About Us</Link></li>
-                <li><Link href="/index#Courses">Courses</Link></li>
+                {/*<li><HashLink to="/index#about-us">About Us</HashLink></li>
+                <li><HashLink to="/index#Courses">Courses</HashLink></li>
                 <li><Link href="/login">Login</Link></li>
-                <li><Link href="/index#Contact">Contact</Link></li>
+                <li><HashLink to="/index#Contact">Contact</HashLink></li>*/}
+
+                <li><Link href="/index">About Us</Link></li>
+                <li><Link href="/index">Courses</Link></li>
+                <li><Link href="/login">Login</Link></li>
+                <li><Link href="/index">Contact</Link></li>
+
+
                 </ul>
                 <button className = "hamburger" id = "hamburger">
                 <i className="fas fa-bars"></i>
@@ -50,7 +59,7 @@ export default function Home() {
             </footer>
 
 
-            {/* <script src="src/app.js"></script>   */}
+            <Script src="src/app.js"></Script>   
     </>
     
   )

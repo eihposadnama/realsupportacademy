@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
+//import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
 //import '@/styles/globals.css'
