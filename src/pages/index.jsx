@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
 //import { HashLink } from 'react-router-hash-link';
@@ -12,8 +13,8 @@ export default function Home() {
         <section className = "entry">
             <nav>
                 <a href="https://RSAcademy.com">
-                    <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
-                    {/*<img src={require('/images/image-name.png')} />*/}
+                    <Image className="logo" src={require('src/images/RS.png')} alt="RS Logo"/>
+                    
                 </a>
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
@@ -51,7 +52,7 @@ export default function Home() {
                     <p>&#x1F449; Welcome to RS Academy, your one-stop destination for affordable and accessible e-learning courses on computer literacy and budgeting. <br/> &#x1F449; Our platform is specifically designed to empower individuals from underrepresented backgrounds, providing them with the necessary skills to succeed in today&apos;s digital world.</p>
                 </div>
                 <div className = "Image-container">
-                    <img className = "images" src="src/images/laptop3.webp" alt ="Laptop3"/>
+                    <Image className = "images" src={require("src/images/laptop3.webp")} alt ="Laptop3"/>
                 </div>
             </section>
 
@@ -64,7 +65,7 @@ export default function Home() {
                     </div>
                     <div className = "Image-container">
                     <div className = "images">
-                        <img className = "images" src="src/images/laptop2.png" alt = "laptop2"/>
+                        <Image className = "images" src={require("src/images/laptop2.png")} alt = "laptop2"/>
                     </div>
                     </div>
                 </div>
@@ -74,7 +75,7 @@ export default function Home() {
                 <div className = "project-container">
                     <div className = "project-container">
                         <div className = "wireframe-div">
-                            <img className = "images" src="src/images/certificate.png" alt = "certificate.png"/>
+                            <Image className = "images" src={require("src/images/certificate.png")} alt = "certificate.png"/>
                         </div>
                     </div>
                     <div className = "project-explanation">
@@ -91,19 +92,19 @@ export default function Home() {
                 <h2>Skills to Gain</h2>
                 <div className = "skill-container">
                     <div className = "skill">
-                        <img className = "skill-format" src="src/images/icons8-online-banking-64.png"/>
+                        <Image className = "skill-format" src={require("src/images/icons8-online-banking-64.png")}/>
                         <p className = "subtext">Finances</p>
                     </div>
                     <div className = "skill">
-                        <img className = "skill-format-c" src="src/images/icons8-monitor-50.png"/>
+                        <Image className = "skill-format-c" src={require("src/images/icons8-monitor-50.png")}/>
                         <p className = "subtext">Computer Literacy</p>
                     </div>
                     <div className = "skill">
-                        <img className = "skill-format" src="src/images/icons8-microsoft-office-2019-48.png"/>
+                        <Image className = "skill-format" src={require("src/images/icons8-microsoft-office-2019-48.png")}/>
                         <p className = "subtext">Office</p>
                     </div>
                     <div className = "skill">
-                        <img className = "skill-format" src="src/images/icons8-mail-48.png"/>
+                        <Image className = "skill-format" src={require("src/images/icons8-mail-48.png")}/>
                         <p className = "subtext">Emails</p>
                     </div>
                 </div>

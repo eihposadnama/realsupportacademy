@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Script from 'next/script';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
@@ -13,7 +14,7 @@ export default function Home() {
         <section class = "entryCourse">
             <nav>
               <Link href="https://batulchehab.com">
-                <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
+                <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
               </Link>
               <ul class = "nav" id = "navlist">
                 <li><Link href="/">About Us</Link></li>
@@ -30,12 +31,12 @@ export default function Home() {
             <h2 id="courseTitle">Courses</h2>
 
             <div id="selection">
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
-              <div className="courseBox"><img src="src/images/laptop.png"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
             </div>
 
           </section>

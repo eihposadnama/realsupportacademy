@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
@@ -13,7 +14,7 @@ export default function Home() {
         <section className = "entry">
             <nav>
                 <a href="https://batulchehab.com">
-                <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
+                <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
                 </a>
                 <ul className = "nav" id = "navlist">
                 {/*<li><HashLink to="/index#about-us">About Us</HashLink></li>
