@@ -13,6 +13,7 @@ export default function Home() {
             <nav>
                 <a href="https://RSAcademy.com">
                     <img className="logo" src="src/images/RS.png" alt="RS Logo"/>
+                    {/*<img src={require('/images/image-name.png')} />*/}
                 </a>
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
