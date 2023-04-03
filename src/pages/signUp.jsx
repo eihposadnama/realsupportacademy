@@ -21,10 +21,10 @@ export default function Home() {
                 <li><Link href="/login">Login</Link></li>
                 <li><HashLink to="/index#Contact">Contact</HashLink></li>*/}
 
-                <li><Link href="/index">About Us</Link></li>
-                <li><Link href="/index">Courses</Link></li>
+                <li><Link href="/">About Us</Link></li>
+                <li><Link href="/courses">Courses</Link></li>
                 <li><Link href="/login">Login</Link></li>
-                <li><Link href="/index">Contact</Link></li>
+                <li><Link href="/">Contact</Link></li>
 
 
                 </ul>

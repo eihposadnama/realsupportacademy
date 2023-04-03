@@ -23,10 +23,10 @@ export default function Home() {
                     <li><Link href="/signUp">Sign Up</Link></li>
                     <li><HashLink to="/index#Contact">Contact</HashLink></li>*/}
 
-                    <li><Link href="/index">About Us</Link></li>
-                    <li><Link href="/index">Courses</Link></li>
+                    <li><Link href="/">About Us</Link></li>
+                    <li><Link href="/courses">Courses</Link></li>
                     <li><Link href="/signUp">Sign Up</Link></li>
-                    <li><Link href="/index">Contact</Link></li>
+                    <li><Link href="/">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
                     <i className="fas fa-bars"></i>

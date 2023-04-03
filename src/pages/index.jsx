@@ -16,7 +16,7 @@ export default function Home() {
                 </a>
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
-                    <li><Link href="#Courses">Courses</Link></li>
+                    <li><Link href="/courses">Courses</Link></li>
                     <li><Link href="/login">Login</Link></li>
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
