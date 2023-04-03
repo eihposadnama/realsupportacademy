@@ -1,3 +1,19 @@
+/* CERTIFICATES */
+.certificate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 body{
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -97,13 +113,17 @@ h3{
 }*/
 
 .entry-area{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 80px;
     display: flex;
+    align-items: center;
 }
 
-.entry-text {
-    margin-left: 80px;
-    margin-bottom: 200px;
-}
+/*.entry-text {*/
+/*    margin-left: 80px;*/
+/*    margin-bottom: 200px;*/
+/*}*/
 
 p {
     margin: 0;
@@ -141,6 +161,7 @@ p {
 }
 
 .logo{
+    width: auto;
     height: 80px;
     margin: 30px;
 }
@@ -151,31 +172,46 @@ p {
 
 .sub-section {
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     padding: 80px;
 }
 
-.images {
-    width: 40vh;
-    padding: 30px;
-    border-radius: 50px;
+.information{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    text-align: center;
 }
 
-.Image-container {
+.images {
+    width: 100%;
+    height: auto;
+    border-radius: 50px;
+}
+.certificate .images {
+    min-width: 300px;
+}
+
+.image-container {
     display: flex;
+    width: 410px;
     align-items: center;
 }
 
 .skill {
     width: 150px;
     height: 150px;
+    padding: 0.5rem;
     box-shadow: 5px 5px 20px #0E131F;
 }
 
 .project-container {
     display: flex;
     justify-content: space-around;
-    padding: 20px;
+    padding: 80px;
 }
 
 .skill-container {
@@ -196,14 +232,13 @@ p {
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
 }
 
-.wireframe-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
+/*.wireframe-div {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-evenly;*/
+/*}*/
 
 .wireframe {
     height: 50vh;
@@ -243,6 +278,7 @@ a {
 
 .skill-format {
     width: 100px;
+    height: auto;
     margin-top: 15px;
 }
 

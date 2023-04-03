@@ -1,3 +1,4 @@
+//import styles from "/styles/style_1.css";
 import Image from 'next/image';
 import Script from 'next/script';
 import Link from 'next/link';
