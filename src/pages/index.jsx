@@ -11,10 +11,9 @@ export default function Home() {
   return (
     <>
         <section className = "entry">
-            <nav>
+            <nav className="navbar">
                 <a href="https://RSAcademy.com">
                     <Image className="logo" src={require('src/images/RS.png')} alt="RS Logo"/>
-                    
                 </a>
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
@@ -25,7 +24,6 @@ export default function Home() {
                 <button className = "hamburger" id = "hamburger">
                     <i className="fas fa-bars"></i>
                 </button>
-
             </nav>
             <div className="entry-area">
                 <div className="entry-text">
@@ -51,7 +49,7 @@ export default function Home() {
                     <h2>Unlock your potential <br/> with RS Academy &#x1F680;</h2>
                     <p>&#x1F449; Welcome to RS Academy, your one-stop destination for affordable and accessible e-learning courses on computer literacy and budgeting. <br/> &#x1F449; Our platform is specifically designed to empower individuals from underrepresented backgrounds, providing them with the necessary skills to succeed in today&apos;s digital world.</p>
                 </div>
-                <div className = "Image-container">
+                <div className = "image-container">
                     <Image className = "images" src={require("src/images/laptop3.webp")} alt ="Laptop3"/>
                 </div>
             </section>
@@ -63,17 +61,15 @@ export default function Home() {
                         <h3>Beginner Computer Literacy &#x1F4BB;</h3>
                         <p>Our computer literacy course is designed to provide a solid foundation for individuals new to computers, covering everything from basic computer hardware and software concepts to file management and internet browsing. With interactive lessons and hands-on exercises, you&apos;ll gain the confidence and skills needed to use computers effectively in your personal and professional life</p>
                     </div>
-                    <div className = "Image-container">
-                    <div className = "images">
+                    <div className = "image-container">
                         <Image className = "images" src={require("src/images/laptop2.png")} alt = "laptop2"/>
-                    </div>
                     </div>
                 </div>
             </section>
             <section className = "project2-section">
                 <h2>Certificates</h2>
-                <div className = "project-container">
-                    <div className = "project-container">
+                <div className = "certificate">
+                    <div className = "">
                         <div className = "wireframe-div">
                             <Image className = "images" src={require("src/images/certificate.png")} alt = "certificate.png"/>
                         </div>
@@ -96,7 +92,7 @@ export default function Home() {
                         <p className = "subtext">Finances</p>
                     </div>
                     <div className = "skill">
-                        <Image className = "skill-format-c" src={require("src/images/icons8-monitor-50.png")}/>
+                        <Image className = "skill-format" src={require("src/images/icons8-monitor-50.png")}/>
                         <p className = "subtext">Computer Literacy</p>
                     </div>
                     <div className = "skill">
