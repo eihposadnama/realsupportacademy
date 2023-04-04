@@ -30,7 +30,7 @@ export default function Home() {
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
                     {
-                    user == false ? <li><Link href="/login">Login</Link></li> : <li>logout</li>
+                    user == null ? <li><Link href="/login">Login</Link></li> : <li>logout</li>
                     }
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
