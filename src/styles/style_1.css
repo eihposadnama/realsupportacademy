@@ -232,6 +232,7 @@ p {
     display: flex;
     flex-direction: column;
     text-align: center;
+    color: #0E131F;
 }
 
 /*.wireframe-div {*/
@@ -489,16 +490,32 @@ form > div > button{
     text-decoration: underline;
 }
 
-.courseBox > img{
+/*course images which are links*/
+.courseImg{
     width: 300px;
     height: 200px;
     margin-top: 10px;
     justify-content: center;
 }
 
+
+/*MOCK COURSEWORK*/
+#mockCourse-section{
+    height: 120vh;
+}
+
+#enroll{
+    width: 50%;
+    margin: auto;
+    height: 40px;
+    background-color: #F1ECCE;
+    color: #0E131F;
+    border: 3pt solid #0E131F;
+    font-size: 20px;
+}
+
 /*remove margin for form when screen is smaller*/
 @media only screen and (max-width: 1000px){
-
     #mainForm{
        margin: auto;
        margin-top: 7%;
@@ -508,7 +525,6 @@ form > div > button{
 
 /*on a screen bigger than 100*/
 @media only screen and (min-width: 1000px){
-
     #mainForm{
         margin-left: 25%;
         margin-top: 3%;

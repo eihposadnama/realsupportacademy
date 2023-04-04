@@ -32,15 +32,15 @@ export default function Home() {
             <h2 id="courseTitle">Courses</h2>
 
             <div id="selection">
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
-              <div className="courseBox"><Image src={require("src/images/laptop.png")}/><span>Course 1</span></div>
+              <div className="courseBox"><a href="/mockCourse"><Image src={require("src/images/laptop.png")} class="courseImg"/></a><span>Beginner Computer Literacy</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
             </div>
 
-          </section>
+        </section>
           
 
           <footer>
