@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 export default function Home() {
-
+    
     const app = initFirebase();
     console.log(app);
     var user = getAuth().currentUser;
@@ -30,7 +30,7 @@ export default function Home() {
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
                     {
-                    user == null ? <li><Link href="/login">Login</Link></li> : <li>logout</li>
+                    user == null ? <li><Link href="/login">Login</Link></li> : <li>Logout</li>
                     }
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>

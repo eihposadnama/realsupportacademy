@@ -87,7 +87,7 @@ export default function Home() {
 
                 <form id="mainForm" onSubmit={handleForm} action="#" method="#">
                     {errorMessage && <p>{errorMessage}</p>}
-                    <div><label><b>Username</b></label></div>
+                    <div><label><b>Email</b></label></div>
                     <div><input onChange={(e) => setEmail(e.target.value)} type="text" name="name" required /><br/></div>
 
                     <div id="pass"><label><b>Password</b></label></div>

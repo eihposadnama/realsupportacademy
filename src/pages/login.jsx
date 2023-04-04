@@ -5,13 +5,55 @@ import Script from 'next/script';
 import { Inter } from 'next/font/google'
 import firebase_app from '../../backend/firebase';
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth"; 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
 
     // sign up to firebase 
-    const signUpAuth = getAuth(firebase_app)
+
+    //whysignUpAuth and not just auth
+    const auth = getAuth(firebase_app)
+
     
+    async function  logIn(email,password){
+        let result = null,
+            error = null;
+        try {
+            result = await signInWithEmailAndPassword(auth, email, password);
+            
+        } catch (e) {
+            error = e;
+        }
+        // console.log(result);
+        // console.log(error);
+        return { result, error };
+    }
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const router = useRouter()
+
+    const handleForm = async (event) => {
+        event.preventDefault()
+        console.log("handling login form")
+        const { result, error } = await logIn(email, password);
+
+        if (error) {
+            // return console.log(error)
+            // set error message
+            console.log("error login form")
+            return console.log(error)
+        }
+        else 
+        {
+            // else successful
+            console.log("success login form")
+            console.log(result)
+            return router.push('/') // sends user back to home page 
+        }
+
+    }
+
 
 
     return (
@@ -46,12 +88,12 @@ export default function Home() {
                     <h1 id="logTitle">Login!</h1>
                 </div>
 
-                <form id="mainForm" action="#" method="#">
-                    <div><label><b>Username</b></label></div>
-                    <div><input type="text" name="name" required /> <br/> </div>
+                <form id="mainForm" onSubmit={handleForm} action="#" method="#">
+                    <div><label><b>Email</b></label></div>
+                    <div><input onChange={(e) => setEmail(e.target.value)} type="text" name="name" required /><br/> </div>
 
                     <div id="pass"><label><b>Password</b></label></div>
-                    <div><input type="password" name="psw" minlength="3" required /><br/></div>
+                    <div><input onChange={(e) => setPassword(e.target.value)} type="password" name="psw" minlength="4" required /><br/></div>
 
 
                     <div id="btn"><button type="submit" id="inner-btn">LOGIN</button></div>
