@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { getApps, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth , signOut } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,3 +29,11 @@ let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getA
 
 export default firebase_app;
 
+const auth = getAuth(app);
+
+export { auth, app };
+
+// logout function
+export const logout = () => {
+    return auth.signOut();
+}

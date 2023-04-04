@@ -4,7 +4,10 @@ import { Inter } from 'next/font/google';
 import { initFirebase } from '../../backend/firebase';
 import firebase_app from '../../backend/firebase';
 // import {auth} from '../../backend/firebase';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
+
+// import logout
+import { logout } from '../../backend/firebase';
 
 
 //import { HashLink } from 'react-router-hash-link';
@@ -13,8 +16,22 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/globals.css'
 //import '@/styles/style_1.css'
 
-export default function Home() {
+
+const handleLogout = async () => {
+    try {
+        const auth = getAuth(firebase_app);
+        await logout(auth);
+        console.log("logged out succesfully")
+    }
+    catch (error) {
+        console.error(error)
+    }
     
+}
+
+export default function Home() {
+    //const signOutFunc = () => 
+    //    firebase_app.getAuth().signOut().then(clear);
     const app = initFirebase();
     console.log(app);
     var user = getAuth().currentUser;
@@ -30,7 +47,7 @@ export default function Home() {
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
                     {
-                    user == null ? <li><Link href="/login">Login</Link></li> : <li>Logout</li>
+                    user == null ? <li><Link href="/login">Login</Link></li> : <li><button onClick={handleLogout}>Logout</button></li>
                     }
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
