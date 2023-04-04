@@ -3,9 +3,17 @@ import Link from 'next/link';
 import Script from 'next/script';
 //import { HashLink } from 'react-router-hash-link';
 import { Inter } from 'next/font/google'
+import firebase_app from '../../backend/firebase';
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth"; 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+    // sign up to firebase 
+    const signUpAuth = getAuth(firebase_app)
+    
+
+
     return (
     <>
         <section className = "entry">

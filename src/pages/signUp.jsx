@@ -2,6 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
+import {firebase_app} from '../../backend/firebase';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
@@ -9,6 +13,48 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 export default function Home() {
+
+    const auth = getAuth(firebase_app);
+
+
+    async function signUp(email, password) {
+        let result = null,
+            error = null;
+        try {
+            result = await createUserWithEmailAndPassword(auth, email, password);
+        } catch (e) {
+            error = e;
+        }
+        // console.log(result);
+        // console.log(error);
+        return { result, error };
+    }
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+    const router = useRouter()
+
+    const handleForm = async (event) => {
+        event.preventDefault()
+
+        const { result, error } = await signUp(email, password);
+
+        if (error) {
+            // return console.log(error)
+            // set error message
+            setErrorMessage(error.message)
+        }
+        else 
+        {
+            // else successful
+            console.log(result)
+            return router.push('/') // sends user back to home page 
+        }
+
+    }
+
+
+
   return (
     <>
         <section className = "entry">
@@ -39,12 +85,14 @@ export default function Home() {
                 <h1 id="signTitle">Sign Up!</h1>
                 </div>
 
-                <form id="mainForm" action="#" method="#">
+                <form id="mainForm" onSubmit={handleForm} action="#" method="#">
+                    {errorMessage && <p>{errorMessage}</p>}
                     <div><label><b>Username</b></label></div>
-                    <div><input type="text" name="name" required /><br/></div>
+                    <div><input onChange={(e) => setEmail(e.target.value)} type="text" name="name" required /><br/></div>
 
                     <div id="pass"><label><b>Password</b></label></div>
-                    <div><input type="password" name="psw" minlength="3" required /><br/></div>
+
+                    <div><input onChange={(e) => setPassword(e.target.value)} type="password" name="psw" minlength="4" required /><br/></div>
 
 
                     <div id="btn"><button type="submit" id="inner-btn">SIGN UP</button></div>

@@ -458,10 +458,19 @@ form > div > button{
     font-size:20px;
 }
 
+form > div > button:hover{
+    background-color:#FF0035;
+    color:#F1ECCE;
+    cursor: pointer;
+}
+
+
+
 #btn{
     margin: auto;
     width: 50%;
 }
+
 
 .switch, #help{
     height: 50px;

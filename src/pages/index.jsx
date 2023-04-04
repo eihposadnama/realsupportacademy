@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Inter } from 'next/font/google';
+import { initFirebase } from '../../backend/firebase';
+import firebase_app from '../../backend/firebase';
+// import {auth} from '../../backend/firebase';
+import { getAuth } from 'firebase/auth';
+
+
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
@@ -8,6 +14,11 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 export default function Home() {
+
+    const app = initFirebase();
+    console.log(app);
+    var user = getAuth().currentUser;
+    console.log("user is logged in: " + user)
   return (
     <>
         <section className = "entry">
@@ -18,7 +29,9 @@ export default function Home() {
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
-                    <li><Link href="/login">Login</Link></li>
+                    {
+                    user == false ? <li><Link href="/login">Login</Link></li> : <li>logout</li>
+                    }
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
