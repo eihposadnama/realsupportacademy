@@ -3,11 +3,12 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { initFirebase } from '../../backend/firebase';
 import firebase_app from '../../backend/firebase';
-// import {auth} from '../../backend/firebase';
+import {auth} from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 
 // import logout
 import { logout } from '../../backend/firebase';
+import { useEffect, useState } from 'react';
 
 
 //import { HashLink } from 'react-router-hash-link';
@@ -17,25 +18,46 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 
-const handleLogout = async () => {
-    try {
-        const auth = getAuth(firebase_app);
-        await logout(auth);
-        console.log("logged out succesfully")
-    }
-    catch (error) {
-        console.error(error)
-    }
-    
-}
-
 export default function Home() {
+    const [user, setUser] = useState('');
+
+    useEffect (() => {
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, []);
+    
+    
+    const handleLogout = async () => {
+        // try {
+        //     const auth = getAuth(firebase_app);
+        //     await logout(auth).then(() => {
+              
+        //     }}  ;
+        //     console.log("logged out succesfully")
+        // }
+        // catch (error) {
+        //     console.error(error)
+        // 
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("logged out succesfully")
+            console.log(getAuth().currentUser);
+    
+          }).catch((error) => { 
+            // An error happened.
+            console.error(error)
+          });
+    }
+
     //const signOutFunc = () => 
     //    firebase_app.getAuth().signOut().then(clear);
-    const app = initFirebase();
-    console.log(app);
-    var user = getAuth().currentUser;
-    console.log("user is logged in: " + user)
+    // const app = initFirebase();
+    // console.log(app);
+    // var user = getAuth().currentUser;
+    // console.log("user is logged in: " + user)
   return (
     <>
         <section className = "entry">
@@ -46,8 +68,16 @@ export default function Home() {
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
-                    {
-                    user == null ? <li><Link href="/login">Login</Link></li> : <li><button onClick={handleLogout}>Logout</button></li>
+                    {user == null ? (
+                        <li>
+                            <Link href="/login">Login</Link>
+                        </li> 
+                        ) : (
+                        <li>
+                            <button onClick={handleLogout}>Logout</button>
+                        </li>
+                    ) 
+                        
                     }
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
