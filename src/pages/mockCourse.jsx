@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 export default function Home() {
+    
   return (
     <>
         <section className = "entryCourse" id="mockCourse-section">
