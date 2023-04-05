@@ -8,6 +8,7 @@ import firebase_app from '../../backend/firebase';
 // import {auth} from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 import { getDocs, getFirestore, collection } from "firebase/firestore";
+
 // import logout
 import { logout } from '../../backend/firebase';
 import { useEffect, useState } from 'react';
@@ -42,7 +43,6 @@ export default function Home() {
         });
   }
 
-
   console.log("starting to get courses")
   const courseCollection = collection(db, "Courses");
   // get collection data
@@ -60,7 +60,6 @@ export default function Home() {
   //output description of course to console
   console.log(courses[0]);
   console.log("course 1")
-
 
 
   return (
@@ -91,30 +90,20 @@ export default function Home() {
               </button>
 
             </nav>
-            <div className="entry-area">
-              <div className="entry-text">
-                  <h1>Here you can view all our courses &#x26A1;</h1>
-                  <p>Browse or sign up below!</p>
-                  <div className="button"><Link href = "#courseTitle">Courses  &#x1F449;</Link></div>
-              </div>
+{/*}
+            <h2 id="courseTitle">Courses</h2>
+
+            <div id="selection">
+              <div className="courseBox"><a href="/mockCourse"><Image src={require("src/images/laptop.png")} class="courseImg"/></a><span>Beginner Computer Literacy</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
+              <div className="courseBox"><Image src={require("src/images/laptop.png")} class="courseImg"/><span>Course 1</span></div>
             </div>
-                  
+                  */}
         </section>
-
-        <section class = "project-section">
-
-          <h2 id="courseTitle">Courses</h2>
-
-          <div className = "course-container">
-              <div className="courseBox">
-                  <Link href="/mockCourse">
-                      <Image src={require("src/images/laptop_spare.png")} className="courseImg"/>
-                      <p className = "subtext">Placeholder</p>
-                  </Link>
-              </div>
-          </div>
-
-</section> 
+          
 
           <footer>
             <p className = "footer-design">@RS Academy Online 2023</p>
