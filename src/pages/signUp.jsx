@@ -3,9 +3,15 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import {firebase_app} from '../../backend/firebase';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+//import { useState } from 'react';
 import { useRouter } from 'next/navigation'
+import {auth} from '../../backend/firebase';
+//import { getAuth, signOut } from 'firebase/auth';
+
+// import logout
+import { logout } from '../../backend/firebase';
+import { useEffect, useState } from 'react';
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
@@ -13,7 +19,29 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/style_1.css'
 
 export default function Home() {
+    const [user, setUser] = useState('');
 
+    useEffect (() => {
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, []);
+    
+    
+    const handleLogout = async () => {
+         
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("logged out succesfully")
+            console.log(getAuth().currentUser);
+    
+            }).catch((error) => { 
+            // An error happened.
+            console.error(error)
+            });
+    }
     const auth = getAuth(firebase_app);
 
 
@@ -70,7 +98,17 @@ export default function Home() {
 
                 <li><Link href="/">About Us</Link></li>
                 <li><Link href="/courses">Courses</Link></li>
-                <li><Link href="/login">Login</Link></li>
+                {user == null ? (
+                        <li>
+                            <Link href="/login">Login</Link>
+                        </li> 
+                        ) : (
+                        <li>
+                            <button onClick={handleLogout}>Logout</button>
+                        </li>
+                    ) 
+                        
+                    }
                 <li><Link href="/">Contact</Link></li>
 
 
@@ -104,7 +142,7 @@ export default function Home() {
         </section>
 
             <footer>
-            <p class = "footer-design">@RS Academy Online 2023</p>
+            <p className = "footer-design">@RS Academy Online 2023</p>
             </footer>
 
 

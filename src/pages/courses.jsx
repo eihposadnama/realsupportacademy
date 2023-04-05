@@ -30,16 +30,7 @@ export default function Home() {
   
   
   const handleLogout = async () => {
-      // try {
-      //     const auth = getAuth(firebase_app);
-      //     await logout(auth).then(() => {
-            
-      //     }}  ;
-      //     console.log("logged out succesfully")
-      // }
-      // catch (error) {
-      //     console.error(error)
-      // 
+      
       signOut(auth).then(() => {
           // Sign-out successful.
           console.log("logged out succesfully")

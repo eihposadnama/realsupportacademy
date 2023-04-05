@@ -4,13 +4,42 @@ import Script from 'next/script';
 //import { HashLink } from 'react-router-hash-link';
 import { Inter } from 'next/font/google'
 import firebase_app from '../../backend/firebase';
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth"; 
-import { useState } from 'react';
+import { signInWithEmailAndPassword, getAuth , signOut} from "firebase/auth"; 
+//maybe can comment out?
+//import { useState } from 'react';
 import { useRouter } from 'next/navigation'
+import {auth} from '../../backend/firebase';
+//import { getAuth, signOut } from 'firebase/auth';
+
+// import logout
+import { logout } from '../../backend/firebase';
+import { useEffect, useState } from 'react';
 const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
+    const [user, setUser] = useState('');
 
-    // sign in up to firebase 
+    useEffect (() => {
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, []);
+    
+    
+    const handleLogout = async () => {
+        
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("logged out succesfully")
+            console.log(getAuth().currentUser);
+    
+            }).catch((error) => { 
+            // An error happened.
+            console.error(error)
+            });
+    }
+    // sign in to firebase 
 
     const auth = getAuth(firebase_app)
 
@@ -75,7 +104,18 @@ export default function Home() {
 
                     <li><Link href="/">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
-                    <li><Link href="/signUp">Sign Up</Link></li>
+                    {/*<li><Link href="/signUp">Sign Up</Link></li>*/}
+                    {user == null ? (
+                        <li>
+                            <Link href="/signUp">Sign Up</Link>
+                        </li> 
+                        ) : (
+                        <li>
+                            <button onClick={handleLogout}>Logout</button>
+                        </li>
+                    ) 
+                        
+                    }
                     <li><Link href="/">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
@@ -92,7 +132,7 @@ export default function Home() {
                     <div><input onChange={(e) => setEmail(e.target.value)} type="text" name="name" required /><br/> </div>
 
                     <div id="pass"><label><b>Password</b></label></div>
-                    <div><input onChange={(e) => setPassword(e.target.value)} type="password" name="psw" minlength="4" required /><br/></div>
+                    <div><input onChange={(e) => setPassword(e.target.value)} type="password" name="psw" minLength="4" required /><br/></div>
 
 
                     <div id="btn"><button type="submit" id="inner-btn">LOGIN</button></div>
