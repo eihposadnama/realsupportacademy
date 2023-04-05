@@ -19,6 +19,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [user, setUser] = useState('');
+  const [courses, setCourses] = useState([]);
 
   useEffect (() => {
   
@@ -28,7 +29,31 @@ export default function Home() {
       return unsubscribe;
   }, []);
   
+  useEffect(() => {
+    console.log("starting to get courses")
+    const courseCollection = collection(db, "Courses");
+    // get collection data
+    // let courses = [];
+    // getDocs(courseCollection)
+    //     .then((snapshot) => {
   
+    //         snapshot.docs.forEach((doc) => {
+    //             courses.push({...doc.data(), id: doc.id});
+    //             // console.log("adding to course array")
+    //         });
+    //         console.log(courses);
+    //     })
+  
+    getDocs(courseCollection).then((snapshot) => {
+      const courseData = snapshot.docs.map((doc) => {
+        const { CourseName} = doc.data(); 
+        return { CourseName, id: doc.id };
+      });
+      console.log("Courses: ", courses);
+      setCourses(courseData);
+    })
+  }, []);  
+
   const handleLogout = async () => {
       
       signOut(auth).then(() => {
@@ -43,28 +68,7 @@ export default function Home() {
   }
 
 
-  console.log("starting to get courses")
-  const courseCollection = collection(db, "Courses");
-  // get collection data
-  // let courses = [];
-  // getDocs(courseCollection)
-  //     .then((snapshot) => {
-
-  //         snapshot.docs.forEach((doc) => {
-  //             courses.push({...doc.data(), id: doc.id});
-  //             // console.log("adding to course array")
-  //         });
-  //         console.log(courses);
-  //     })
-
-  getDocs(courseCollection).then((snapshot) => {
-    let courses = snapshot.docs.map((doc) => {
-      const { CourseName, CourseLeader} = doc.data(); 
-      return { CourseName, CourseLeader, id: doc.id };
-    });
-    console.log("Courses: ", courses);
-  })
-
+// ERROR, 
 
   return (
     <>
@@ -107,15 +111,18 @@ export default function Home() {
         <section class = "project-section">
 
           <h2 id="courseTitle">Courses</h2>
-
           <div className = "course-container">
-              <div className="courseBox">
-                  <Link href="/mockCourse">
-                      <Image src={require("src/images/laptop_spare.png")} className="courseImg"/>
-                      <p className = "subtext">Placeholder</p>
-                  </Link>
-              </div>
+          {courses.map((course) => (
+                <div className="courseBox"  key = {course.id}>
+                    <Link href={`/course/${course.id}`}>
+                        <Image src={require("src/images/placeholder.png")} className="courseImg"/>
+                        <p className = "subtext">{course.CourseName}</p>
+                    </Link>
+                </div>
+          ))}
           </div>
+
+
 
 </section> 
 
