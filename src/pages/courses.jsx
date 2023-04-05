@@ -46,21 +46,24 @@ export default function Home() {
   console.log("starting to get courses")
   const courseCollection = collection(db, "Courses");
   // get collection data
-  let courses = [];
-  getDocs(courseCollection)
-      .then((snapshot) => {
+  // let courses = [];
+  // getDocs(courseCollection)
+  //     .then((snapshot) => {
 
-          snapshot.docs.forEach((doc) => {
-              courses.push({...doc.data(), id: doc.id});
-              // console.log("adding to course array")
-          });
-          console.log(courses);
-      })
+  //         snapshot.docs.forEach((doc) => {
+  //             courses.push({...doc.data(), id: doc.id});
+  //             // console.log("adding to course array")
+  //         });
+  //         console.log(courses);
+  //     })
 
-  //output description of course to console
-  console.log(courses[0]);
-  console.log("course 1")
-
+  getDocs(courseCollection).then((snapshot) => {
+    let courses = snapshot.docs.map((doc) => {
+      const { CourseName, CourseLeader} = doc.data(); 
+      return { CourseName, CourseLeader, id: doc.id };
+    });
+    console.log("Courses: ", courses);
+  })
 
 
   return (
