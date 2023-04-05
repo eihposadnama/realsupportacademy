@@ -60,6 +60,7 @@ export default function Home() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const router = useRouter()
+    const [errorMessage, setErrorMessage] = useState('')
 
     const handleForm = async (event) => {
         event.preventDefault()
@@ -70,7 +71,8 @@ export default function Home() {
             // return console.log(error)
             // set error message
             console.log("error login form")
-            return console.log(error)
+            // return console.log(error)
+            setErrorMessage("Username or Password Incorrect");
         }
         else 
         {
@@ -128,6 +130,7 @@ export default function Home() {
                 </div>
 
                 <form id="mainForm" onSubmit={handleForm} action="#" method="#">
+                    {errorMessage && <p>{errorMessage}</p>}
                     <div><label><b>Email</b></label></div>
                     <div><input onChange={(e) => setEmail(e.target.value)} type="text" name="name" required /><br/> </div>
 

@@ -70,7 +70,7 @@ export default function Home() {
         if (error) {
             // return console.log(error)
             // set error message
-            setErrorMessage(error.message)
+            setErrorMessage("Credientials Invalid, may be already in use or inputted in wrong format")
         }
         else 
         {
