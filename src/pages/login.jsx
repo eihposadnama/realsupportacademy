@@ -10,9 +10,8 @@ import { useRouter } from 'next/navigation'
 const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
 
-    // sign up to firebase 
+    // sign in up to firebase 
 
-    //whysignUpAuth and not just auth
     const auth = getAuth(firebase_app)
 
     
