@@ -6,23 +6,72 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google';
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
+import {auth} from '../../backend/firebase';
+import { getAuth, signOut } from 'firebase/auth';
+
+// import logout
+import { logout } from '../../backend/firebase';
+import { useEffect, useState } from 'react';
 //import {Link} from "react-router-dom";
 //import '@/styles/globals.css'
 //import '@/styles/style_1.css'
 
 export default function Home() {
+
+    const [user, setUser] = useState('');
+
+    useEffect (() => {
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, []);
+    
+    
+    const handleLogout = async () => {
+        // try {
+        //     const auth = getAuth(firebase_app);
+        //     await logout(auth).then(() => {
+                
+        //     }}  ;
+        //     console.log("logged out succesfully")
+        // }
+        // catch (error) {
+        //     console.error(error)
+        // 
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("logged out succesfully")
+            console.log(getAuth().currentUser);
+    
+            }).catch((error) => { 
+            // An error happened.
+            console.error(error)
+            });
+    }
     
   return (
     <>
         <section className = "entryCourse" id="mockCourse-section">
              <nav>
-                <Link href="https://batulchehab.com">
+                <Link href="/">
                     <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
                 </Link>
                 <ul class = "nav" id = "navlist">
                     <li><Link href="/">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
-                    <li><Link href="/login">Login</Link></li>
+                    {user == null ? (
+                        <li>
+                            <Link href="/login">Login</Link>
+                        </li> 
+                        ) : (
+                        <li>
+                            <Link href="#" onClick={handleLogout}>Logout</Link>
+                        </li>
+                    ) 
+                        
+                    }
                     <li><Link href="/">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
