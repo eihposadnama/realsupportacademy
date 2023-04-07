@@ -565,6 +565,13 @@ form > div > button{
     color: #0E131F;
     border: 3pt solid #0E131F;
     font-size: 20px;
+    cursor: pointer;
+}
+
+
+#enroll:hover{
+    background-color: #0E131F;
+    color: #F1ECCE;
 }
 
 

@@ -77,7 +77,7 @@ export default function Home() {
                 <Link href="/">
                     <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
                 </Link>
-              <ul class = "nav" id = "navlist">
+              <ul className = "nav" id = "navlist">
                 <li><Link href="/#about-us">About Us</Link></li>
                 <li><Link href="/courses">Courses</Link></li>
                 {user == null ? (
@@ -86,7 +86,7 @@ export default function Home() {
                         </li> 
                         ) : (
                         <li>
-                            <Link href="#" onClick={handleLogout}>Logout</Link>
+                            <Link href="/" onClick={handleLogout}>Logout</Link>
                         </li>
                     ) 
                         
@@ -108,23 +108,23 @@ export default function Home() {
                   
         </section>
 
-        <section class = "project-section">
+        <section className = "project-section">
 
           <h2 id="courseTitle">Courses</h2>
+          {
+            !user ? <p>You must be logged in to see specific details about these courses, you can login <Link href="/login" style={{ color: '#000' }} >here</Link>, alternatively sign-up <Link href="/signUp" style={{ color: '#000' }}>here</Link>. </p> : <></>
+          }
           <div className = "course-container">
           {courses.map((course) => (
                 <div className="courseBox"  key = {course.id}>
-                    <Link href={`/course/${course.id}`}>
-                        <Image src={require("src/images/placeholder.png")} className="courseImg"/>
+                    <Link href={ user ? `/${course.id}` : "#courseTitle"}>
+                        <Image src={require("src/images/laptop_spare.png")} className="courseImg"/>
                         <p className = "subtext">{course.CourseName}</p>
                     </Link>
                 </div>
           ))}
           </div>
-
-
-
-</section> 
+        </section> 
 
           <footer>
             <p className = "footer-design">@RS Academy Online 2023</p>

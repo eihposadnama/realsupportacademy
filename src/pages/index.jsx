@@ -74,7 +74,7 @@ export default function Home() {
                         </li> 
                         ) : (
                         <li>
-                            <Link href="#" onClick={handleLogout}>Logout</Link>
+                            <Link href="/" onClick={handleLogout}>Logout</Link>
                         </li>
                     ) 
                         
