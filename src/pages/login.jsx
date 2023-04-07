@@ -90,9 +90,9 @@ export default function Home() {
     <>
         <section className = "entry">
             <nav>
-                <a href="https://batulchehab.com">
+                <Link href="/">
                     <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
-                </a>
+                </Link>
                 <ul className = "nav" id = "navlist">
                     {/* <li><a href="/index.jsx#about-us">About Us</a></li> 
                     <li><a href="/index.jsx#Courses">Courses</a></li>
@@ -104,7 +104,7 @@ export default function Home() {
                     <li><Link href="/signUp">Sign Up</Link></li>
                     <li><HashLink to="/index#Contact">Contact</HashLink></li>*/}
 
-                    <li><Link href="/">About Us</Link></li>
+                    <li><Link href="/#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
                     {/*<li><Link href="/signUp">Sign Up</Link></li>*/}
                     {user == null ? (
@@ -118,7 +118,7 @@ export default function Home() {
                     ) 
                         
                     }
-                    <li><Link href="/">Contact</Link></li>
+                    <li><Link href="/#Contact">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
                     <i className="fas fa-bars"></i>

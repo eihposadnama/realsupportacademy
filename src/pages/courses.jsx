@@ -74,11 +74,11 @@ export default function Home() {
     <>
         <section class = "entryCourse">
             <nav>
-              <Link href="https://batulchehab.com">
-                <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
-              </Link>
+                <Link href="/">
+                    <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
+                </Link>
               <ul class = "nav" id = "navlist">
-                <li><Link href="/">About Us</Link></li>
+                <li><Link href="/#about-us">About Us</Link></li>
                 <li><Link href="/courses">Courses</Link></li>
                 {user == null ? (
                         <li>
@@ -91,7 +91,7 @@ export default function Home() {
                     ) 
                         
                     }
-                <li><Link href="/">Contact</Link></li>
+                <li><Link href="/#Contact">Contact</Link></li>
               </ul>
               <button className = "hamburger" id = "hamburger">
                 <i className="fas fa-bars"></i>

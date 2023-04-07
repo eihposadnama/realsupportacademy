@@ -62,9 +62,9 @@ export default function Home() {
     <>
         <section className = "entry">
             <nav className="navbar">
-                <a href="https://RSAcademy.com">
-                    <Image className="logo" src={require('src/images/RS.png')} alt="RS Logo"/>
-                </a>
+                <Link href="/">
+                    <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
+                </Link>
                 <ul className = "nav" id = "navlist">
                     <li><Link href="#about-us">About Us</Link></li>
                     <li><Link href="/courses">Courses</Link></li>
