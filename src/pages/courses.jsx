@@ -72,7 +72,7 @@ export default function Home() {
 
   return (
     <>
-        <section class = "entryCourse">
+        <section className = "entryCourse">
             <nav>
                 <Link href="/">
                     <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
