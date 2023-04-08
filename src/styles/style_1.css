@@ -193,6 +193,7 @@ p {
     width: 150px;
     height: 150px;
     padding: 0.5rem;
+    box-shadow:4px 4px 5px black;
 }
 
 .project-container {
@@ -206,6 +207,7 @@ p {
     justify-content: space-around;
     padding: 20px;
     font-size: 10px;
+
 }
 
 .project-section {
@@ -614,3 +616,81 @@ form > div > button{
         margin-left: 14%;
     }
 }
+/* eric's css below*/
+.Post-Container{
+    /* margin: 3rem; */
+    padding: 4rem;
+    background: #202737;
+}
+
+.Category-Names{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Posts-Wrapper, .Category-Wrapper{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.Back{
+    border-radius: 1.5rem;
+    background-color: #FF0035;
+    text-align: center;
+    font-size: 30px;
+    padding: 1rem;
+    margin-left: 1rem;
+}
+
+.Back:hover {
+    background-color: #38405F;
+    color: #FF0035;
+}
+
+.Forum-Category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* //align-content: center; */
+    padding: 1rem;
+  }
+  
+  .Category-Icon{
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+  }
+  
+  .Category-Name{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .Category-Profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .PostDetails{
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .Message-data{
+    padding: 1rem;
+    color:#0E131F;
+    background: #F1ECCE;
+    border-radius: 0.5rem;
+    border: solid 0.1rem black;
+  
+  }
+  
+  .Message-text{
+    font-size: 1.5rem;
+  }

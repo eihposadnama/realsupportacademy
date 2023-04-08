@@ -40,6 +40,7 @@ export default function Home({ course }) {
 
     const [user, setUser] = useState('');
     const [enrolled, setEnrolled] = useState(false);
+    const [message, setMessage] = useState('');
 
     useEffect (() => {
     
@@ -75,24 +76,29 @@ export default function Home({ course }) {
         const courseDoc = await getDoc(courseRef);
         const enrolledUsers = courseDoc.data().enrolledUsers;
 
-        try {
-            await updateDoc(courseRef, {
-                enrolledUsers: arrayUnion(userId)
-            });
-            console.log("user succesfully enrolled in course")
+        if (enrolledUsers.indexOf(user.uid) !== -1) {
             setEnrolled(true);
-        } catch (e) {
-            console.error("Error adding user to course: ", e);
+            setMessage("You are already enrolled in this course");
+        } else {    
+            try {
+                await updateDoc(courseRef, {
+                    enrolledUsers: arrayUnion(userId)
+                });
+                setEnrolled(true);
+                setMessage("You have successfully enrolled in this course");
+            } catch (e) {
+                console.error("Error adding user to course: ", e);
+            }
         }
-
     }
 
     useEffect(() => {
-        if (course.enrolledUsers && course.enrolledUsers.indexOf(user.id) !== -1) {
+        if (course.enrolledUsers && course.enrolledUsers.indexOf(user.uid) !== -1) {
             console.log("User is already enrolled in course");
             setEnrolled(true);
-          }
-    }, [course, user.id]);
+            setMessage("You are already enrolled in this course");
+          } 
+    }, [enrolled, user.uid, course]);
 
 
     
@@ -134,13 +140,19 @@ export default function Home({ course }) {
                         <p>{course.CourseLength}</p>
                         <h3>Course Leader</h3>
                         <p>{course.CourseLeader}</p>
+                        {/* <h3><Link href="/forum" style={{ color: '#000' }}>Forum Link</Link></h3> */}
+                        {enrolled ? (
+                            <div className="button"><Link href = "/forum">Forum Link</Link></div>
+                        ) : (
+                            <></>
+                        )}        
                     </div>
                     <div className = "image-container">
                         <Image className = "images" src={require("src/images/laptop2.png")} alt = "laptop2"/>
                     </div>
                 </div>
                 {enrolled ? (
-                    <p>You are already enrolled in this course</p>
+                    <p>{message}</p>
                 ) : (
                     <button id="enroll" onClick={handleEnroll}>ENROLL</button>
                 )}        
