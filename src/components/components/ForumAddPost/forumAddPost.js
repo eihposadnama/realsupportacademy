@@ -8,21 +8,31 @@ export default function ForumAddPost(props){
         "The content of a textarea goes in the value attribute"
     );
 
+    const [textTitle, setTextTitle] = useState(
+        "Dummy Title"
+    );
+
     const handleChange = (event) => {
         setTextarea(event.target.value)
     };
 
+    const handleTitle = (event) => {
+        setTextTitle(event.target.value)
+    };
+
+    let headerPost = props.WithTitle ? <ForumTopic PostName={props.PostName} UserName={props.UserName} Date={props.Date}/> : <input onChange={handleTitle}/>;
+    let currentTitle = props.WithTitle ? props.PostName: textTitle;
 
     return(
-        <div className="Forum-Post">
-            <ForumTopic PostName={props.PostName} UserName={props.UserName} Date={props.Date}/>
-            <form className="Message-data" onSubmit={props.onClick}>
+        <form className="Forum-Post" onSubmit={props.onClick}>
+            {headerPost}
+            <div className="Message-data" >
                 <div className="Message-text">
                     <textarea value={textarea} rows="4" onChange={handleChange} />
                 </div>
-                <button type="Submit" onClick={props.onClick}>Submit</button>
-            </form>
-        </div>
+                <button type="Submit" onClick={(currentTitle,textarea)=>props.onClick}>Submit</button>
+            </div>
+        </form>
 
     );
 }
