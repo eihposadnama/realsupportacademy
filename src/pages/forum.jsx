@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import ForumCategory from "src/components/components/ForumCategory/forumCategory";
 import ForumTopic from "src/components/components/ForumTopic/forumTopic";
 import ForumPost from "src/components/components/ForumPost/forumPost";
+import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,31 +10,95 @@ export default function Forum() {
 
     const [forumState, setForumState] = useState("Posts");
     const [topicName, setTopicName] = useState("");
+    const [addPost, setAddPost] = useState(false);
     const [postNum, setPostNum] = useState(0);
+    let currentID = postNum;
+    const [postsData, setPosts] = useState([{
+        id: currentID,
+        postName: "TestA",
+        userName: "TBA",
+        date: "1/1/2023",
+        text: ""
+    }]);
 
-    function OnClickBack(){
+    //const [postsText, setPostText] = useState([]);
+    let post_list = [];
+
+
+    function OnClickBack() {
+        setAddPost(false);
         setForumState("Posts");
     }
 
-    function OnClickTopic(){
+    function OnClickTopic() {
         //Switch to post from Posts
+        let TestID = 0
+        const currentPostIndex = postsData.findIndex((post) => post.id === TestID);
+        const updatedPost = {...postsData[currentPostIndex], text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."};
+        const newPostData = [
+            ...postsData.slice(0, currentPostIndex),
+            updatedPost,
+            ...postsData.slice(currentPostIndex+1)
+        ];
+        setPosts(newPostData);
         setForumState("Post");
     }
 
+    function OnClickAddPost() {
+        //setForumState("Add post");
+        setAddPost(true);
+    }
 
-    function TopicRender(){
+    function OnClickSubmitPost() {
+        setPostNum(count => count+1);
+        setAddPost(false);
+        currentID = postNum
+        setPosts((prevPosts) => ([...prevPosts, {
+            id: postNum,
+            postName: "TestA",
+            userName: "TBA",
+            date: "1/1/2023",
+            text: ""
+        }]));
 
-        function RenderTopic(postName, userName, date){
-            return(<ForumTopic PostName={postName} UserName={userName} Date={date} onClick={OnClickTopic}/>)
-        }
+    }
 
-        function RenderTopics(numTopics){
-            for (var i = 0 ; i < numTopics; i++){
-                RenderTopic("Test", "TBA", "1/1/2023")
-            }
-        }
 
-        return(
+    function TopicRender() {
+
+        /*setPosts(prevPosts => {
+             prevPosts.push(
+                 {
+                     postName: "TestA",
+                     userName: "TBA",
+                     date: "1/1/2023",
+                     text: ""
+                 }
+             )
+         });*/
+
+        /*
+        setPosts((prevPosts) => ([...prevPosts, {
+            postName: "TestA",
+            userName: "TBA",
+            date: "1/1/2023",
+            text: ""
+        }]));
+
+         */
+
+        let topics = [];
+
+        topics = /** @type {ForumTopic[]} */postsData.map((postData) => {
+            return (<ForumTopic PostName={postData.postName} UserName={postData.userName} Date={postData.date}
+                                onClick={OnClickTopic}/>);
+
+            /*  topics.push(<ForumTopic PostName={postData.postName} UserName={postData.userName} Date={postData.date} onClick={OnClickTopic}/>);
+              return 1234;*/
+        });
+
+
+        return (
             <div className="Post-Container">
                 <div className="Category-Names">
                     <p>{topicName}</p>
@@ -42,27 +107,57 @@ export default function Forum() {
                     <p>Last Modified</p>
                 </div>
                 <div className="Posts-Wrapper">
-                    {RenderTopics(5)}
+                    {topics}
                 </div>
+                <a className="Back" onClick={OnClickSubmitPost}>Add post</a>
             </div>
         )
     }
 
 
+    function PostRender() {
 
-    function PostRender(){
+        /*
+        let postsData = [
+            [
+                "Test A",
+                "TBA",
+                "1/1/2023",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            ],
+            [
+                "Test B",
+                "TBA",
+                "1/1/2023",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            ],
+            [
+                "Test C",
+                "TBA",
+                "1/1/2023",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+            ]
+        ]
 
-        function RenderPosts(numPosts){
-            for (var i; i < numPosts; i++){
-                RenderPost("Test", "TBA", "1/1/2023", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
-            }
+         */
+
+        //setPosts(prevPosts => prevPosts[0].text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+
+
+        let posts = [];
+        posts /** @type {ForumPost[]} */ = postsData.map((postData) => {
+            return (<ForumPost PostName={postData.postName} UserName={postData.userName} Date={postData.date}
+                               TextData={postData.text}/>);
+        });
+
+        if (addPost)
+        {
+            posts.push(<ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"} onClick={OnClickSubmitPost}/>);
         }
 
-        function RenderPost(postName, userName, date, text){
-            return(<ForumPost PostName={postName} UserName={userName} Date={date} TextData={text}/>)
-        }
 
-        return(
+
+        return (
             <div className="Post-Container">
                 <div className="Category-Names">
                     <p>{topicName}</p>
@@ -71,16 +166,19 @@ export default function Forum() {
                     <p>Last Modified</p>
                 </div>
                 <div className="Posts-Wrapper">
-                    {RenderPosts(2)}
+                    {console.log(addPost)}
+                    {posts}
                 </div>
                 <a className="Back" onClick={OnClickBack}>Back</a>
+                <a className="Back" onClick={OnClickAddPost}>Back</a>
             </div>
         )
     }
 
-    if (forumState === "Posts")
-    {
-        return(
+
+
+    if (forumState === "Posts") {
+        return (
             <>
                 <section className="entry">
                     <nav>
@@ -104,10 +202,8 @@ export default function Forum() {
                 </section>
             </>
         )
-    }
-    else
-    {
-        return(
+    } else if (forumState=="Post"){
+        return (
             <>
                 <section className="entry">
                     <nav>
@@ -131,6 +227,9 @@ export default function Forum() {
                 </section>
             </>
         )
+    }
+    else
+    {
     }
 
 }
