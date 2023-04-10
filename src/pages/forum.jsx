@@ -32,6 +32,7 @@ export default function Forum() {
 
     function OnClickTopic() {
         //Switch to post from Posts
+        setAddPost(false);
         let TestID = 0
         const currentPostIndex = postsData.findIndex((post) => post.id === TestID);
         const updatedPost = {...postsData[currentPostIndex], text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."};
@@ -46,10 +47,11 @@ export default function Forum() {
 
     function OnClickAddPost() {
         //setForumState("Add post");
+        console.log("Adding post");
         setAddPost(true);
     }
 
-    function OnClickSubmitPost() {
+    function OnClickSubmitPost(title, text) {
         setPostNum(count => count+1);
         setAddPost(false);
         currentID = postNum
@@ -97,6 +99,13 @@ export default function Forum() {
               return 1234;*/
         });
 
+        if (addPost)
+        {
+            topics.splice(0, 0, <ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"} onClick={OnClickSubmitPost} WithTitle={false}/>);
+            console.log("topic add post");
+        }
+
+
 
         return (
             <div className="Post-Container">
@@ -109,7 +118,7 @@ export default function Forum() {
                 <div className="Posts-Wrapper">
                     {topics}
                 </div>
-                <a className="Back" onClick={OnClickSubmitPost}>Add post</a>
+                <a className="Back" onClick={OnClickAddPost}>Add post</a>
             </div>
         )
     }
@@ -152,7 +161,8 @@ export default function Forum() {
 
         if (addPost)
         {
-            posts.push(<ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"} onClick={OnClickSubmitPost}/>);
+            posts.push(<ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"}
+                                     onClick={OnClickSubmitPost} WithTitle={true}/>);
         }
 
 
@@ -170,7 +180,7 @@ export default function Forum() {
                     {posts}
                 </div>
                 <a className="Back" onClick={OnClickBack}>Back</a>
-                <a className="Back" onClick={OnClickAddPost}>Back</a>
+                <a className="Back" onClick={OnClickAddPost}>Add Post</a>
             </div>
         )
     }
