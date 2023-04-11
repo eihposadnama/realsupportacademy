@@ -89,7 +89,7 @@ export default function Home() {
                 <div className="entry-text">
                     <h1>RS Academy</h1>
                     <p>Empowering underrepresented communities through accessible e-learning</p>
-                    <div className="button"><Link href = "#about-us">About Us</Link></div>
+                    <div className="button"><Link href = "#about-us">About Us &#x1F449;</Link></div>
                 </div>
 
                 {/* <div className="socials">

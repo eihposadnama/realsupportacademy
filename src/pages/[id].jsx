@@ -139,10 +139,10 @@ export default function Home({ course }) {
                         <h3>Course Length</h3>
                         <p>{course.CourseLength}</p>
                         <h3>Course Leader</h3>
-                        <p>{course.CourseLeader}</p>
+                        <p className="addingspace">{course.CourseLeader}</p>
                         {/* <h3><Link href="/forum" style={{ color: '#000' }}>Forum Link</Link></h3> */}
                         {enrolled ? (
-                            <div className="button"><Link href = {`/forum?courseId=${course.id}`}>Forum Link</Link></div>
+                            <div className="buttonForum"><Link href = {`/forum?courseId=${course.id}`}>&#x1F449;Forum </Link></div>
                         ) : (
                             <></>
                         )}        

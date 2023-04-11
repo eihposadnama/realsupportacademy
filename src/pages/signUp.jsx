@@ -134,7 +134,8 @@ export default function Home() {
 
 
                     <div id="btn"><button type="submit" id="inner-btn">SIGN UP</button></div>
-                    <div><Link href="login">Already have an account?</Link></div>
+                    <div id="help"><Link href="login">Already have an account?</Link></div>
+                    <div id="help"><Link href="mailto:name@email.com">Need help registering?</Link></div>
                 </form>
             </div>
 
