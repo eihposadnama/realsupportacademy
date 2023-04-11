@@ -60,7 +60,7 @@ export default function Forum() {
 
 
     // const forumMessagesRef = collection(db, 'Courses', courseId, 'forumMessages');
-
+    var today = new Date()
 
     useEffect(() => {
 
@@ -80,11 +80,12 @@ export default function Forum() {
             console.log("Calling DB");
             const forumMessagesData =forumMessagesSnapshot.docs.map((doc) => {
                 const {Title, Description, Time, User} = doc.data();
+                console.log(Time);
                 return {
                     id: doc.id,
                     Title: Title,
                     Description: Description,
-                    Time: Time.toDate().toLocaleString(),
+                    Time: Time ? Time.toDate().toLocaleString():((today.getDate())<10?'0':'') + today.getDate() + "/" + ((today.getMonth() + 1)<10?'0':'')+today.getMonth()+1 + "/" + ((today.getFullYear)<10?'0':'')+today.getFullYear()  + ", " + ((today.getHours)<10?'0':'')+today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes() + ':' + ((today.getSeconds())<10?'0':'')+today.getSeconds(),   //date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
                     User: User,
                 };
             });
@@ -194,7 +195,7 @@ export default function Forum() {
                 <div className="Posts-Wrapper">
                     {topics}
                 </div>
-                <a className="Back" onClick={OnClickAddPost}>Add post</a>
+                <Link className="Back" href = {`/addPost?courseId=${courseId}`}>add post</Link>
             </div>
         )
     }
@@ -255,7 +256,7 @@ export default function Forum() {
                     {posts}
                 </div>
                 <a className="Back" onClick={OnClickBack}>Back</a>
-                <a className="Back" onClick={OnClickAddPost}>Add Post</a>
+                <a className="Back" h>Add Post</a>
             </div>
         )
     }
@@ -267,7 +268,7 @@ export default function Forum() {
             <>
                 <section className="entry">
                     <nav>
-                        <Link href="https://batulchehab.com">
+                        <Link href="/">
                             <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
                         </Link>
                         <ul className="nav" id="navlist">

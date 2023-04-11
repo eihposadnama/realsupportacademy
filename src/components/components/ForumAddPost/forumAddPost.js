@@ -72,7 +72,7 @@ export default function ForumAddPost(props){
                 <div className="Message-text">
                     <textarea value={description} rows="4" onChange={handleChange} />
                 </div>
-                <button type="Submit" onClick={(currentTitle,textarea)=>props.onClick}>Submit</button>
+                <button type="Submit" onClick={props.onClick}>Submit</button>
             </div>
         </form>
 
