@@ -142,7 +142,7 @@ export default function Home({ course }) {
                         <p>{course.CourseLeader}</p>
                         {/* <h3><Link href="/forum" style={{ color: '#000' }}>Forum Link</Link></h3> */}
                         {enrolled ? (
-                            <div className="button"><Link href = "/forum">Forum Link</Link></div>
+                            <div className="button"><Link href = {`/forum?courseId=${course.id}`}>Forum Link</Link></div>
                         ) : (
                             <></>
                         )}        

@@ -3,6 +3,7 @@ import ForumCategory from "src/components/components/ForumCategory/forumCategory
 import ForumTopic from "src/components/components/ForumTopic/forumTopic";
 import ForumPost from "src/components/components/ForumPost/forumPost";
 import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
+import {useRouter} from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -20,6 +21,11 @@ export default function Forum() {
         date: "1/1/2023",
         text: ""
     }]);
+
+    const router = useRouter();
+    const {courseId} = router.query;
+    console.log("Course ID: ", courseId);
+
 
     //const [postsText, setPostText] = useState([]);
     let post_list = [];
@@ -101,7 +107,7 @@ export default function Forum() {
 
         if (addPost)
         {
-            topics.splice(0, 0, <ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"} onClick={OnClickSubmitPost} WithTitle={false}/>);
+            topics.splice(0, 0, <ForumAddPost PostName={"TBA"} UserName={"N/A"} Date={"Unknown"} onClick={OnClickSubmitPost} WithTitle={false} courseId={courseId} />);
             console.log("topic add post");
         }
 
