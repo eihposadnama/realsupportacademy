@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
 import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore } from 'firebase/firestore';
-
+import {  auth  } from '../../backend/firebase';
+import { getAuth, signOut } from 'firebase/auth';
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Image from "next/image";
@@ -43,9 +44,30 @@ export default function AddPost() {
     // useEffect (() => {
     //     window.localStorage.setItem('courseId', courseId);
     // } , [courseId])
+    const [user, setUser] = useState('');
 
+    useEffect (() => {
+    
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, []);
+    
 
-
+    const handleLogout = async () => {
+      
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            console.log("logged out succesfully")
+            console.log(getAuth().currentUser);
+    
+          }).catch((error) => { 
+            // An error happened.
+            console.error(error)
+          });
+    }
+    
 
     // const forumMessagesRef = collection(db, 'Courses', courseId, 'forumMessages');
 
@@ -80,7 +102,17 @@ export default function AddPost() {
                         <ul className="nav" id="navlist">
                             <li><Link href="/">About Us</Link></li>
                             <li><Link href="/courses">Courses</Link></li>
-                            <li><Link href="/login">Login</Link></li>
+                            {user == null ? (
+                                <li>
+                                    <Link href="/login">Login</Link>
+                                </li> 
+                                ) : (
+                                <li>
+                                    <Link href="/" onClick={handleLogout}>Logout</Link>
+                                </li>
+                            ) 
+                                
+                            }
                             <li><Link href="/">Contact</Link></li>
                         </ul>
                         <button className="hamburger" id="hamburger">

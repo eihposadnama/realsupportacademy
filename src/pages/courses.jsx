@@ -36,8 +36,24 @@ export default function Home() {
 
   const storage = getStorage(app);
   
-  const storageRef = ref(storage, )
 
+
+  // useEffect(() => {
+  //   let urlvar = "";
+  //   const storageRef = ref(storage, 'banking101.png');
+  //   getDownloadURL(storageRef).then((url) => {
+  //     console.log("url: ", url);
+  //     urlvar = url;
+      
+  //   });
+  
+  //   const courseRef = doc(db, "Courses", 'OB103');
+  //   console.log(courseRef);
+  //   updateDoc(courseRef, {image: urlvar})
+
+  // }, []);
+
+  
 
 
   useEffect(() => {
@@ -55,47 +71,47 @@ export default function Home() {
     //         console.log(courses);
     //     })
   
-  //   getDocs(courseCollection).then((snapshot) => {
-  //     const courseData = snapshot.docs.map((doc) => {
-  //       const { CourseName, image} = doc.data(); 
-  //       console.log("course image: ", image);
-  //       return { CourseName, image, id: doc.id };
-  //     });
-  //     console.log("Courses: ", courses);
-  //     setCourses(courseData);
-  //   })
-  // }, []);  
-
     getDocs(courseCollection).then((snapshot) => {
-      const promises = snapshot.docs.map((doc) => {
-        const { CourseName, image} = doc.data();
-        const imageRef = ref(storage, image);
-        return getDownloadURL(imageRef).then((url) => {
-          const courseRef = doc(collection(db, "Courses"), doc.id);
-          return updateDoc(courseRef, {image: url})
-        }).catch((error) => {
-          console.log(error);
-        });
-    });
-    Promise.all(promises).then(() => {
-      console.log("All courses updated with image URLs");
-    }).catch((error) => {
-      console.error("Error updating course documents with image URLs", error);
-    });
-  });
-}, []);
+      const courseData = snapshot.docs.map((doc) => {
+        const { CourseName, image} = doc.data(); 
+        console.log("course image: ", image);
+        return { CourseName, image, id: doc.id };
+      });
+      console.log("Courses: ", courses);
+      setCourses(courseData);
+    })
+  }, []);  
 
-useEffect(() => {
-  const courseCollection = collection(db, "courses");
-  const unsubscribe = onSnapshot(courseCollection, (snapshot) => {
-    const courseData = snapshot.docs.map((doc) => {
-      const { CourseName, imageUrl } = doc.data();
-      return { CourseName, imageUrl, id: doc.id };
-    });
-    setCourses(courseData);
-  });
-  return unsubscribe;
-}, [db]);
+//     getDocs(courseCollection).then((snapshot) => {
+//       const promises = snapshot.docs.map((doc) => {
+//         const { CourseName, image} = doc.data();
+//         const imageRef = ref(storage, image);
+//         return getDownloadURL(imageRef).then((url) => {
+//           const courseRef = doc(collection(db, "Courses"), doc.id);
+//           return updateDoc(courseRef, {image: url})
+//         }).catch((error) => {
+//           console.log(error);
+//         });
+//     });
+//     Promise.all(promises).then(() => {
+//       console.log("All courses updated with image URLs");
+//     }).catch((error) => {
+//       console.error("Error updating course documents with image URLs", error);
+//     });
+//   });
+// }, []);
+
+// useEffect(() => {
+//   const courseCollection = collection(db, "courses");
+//   const unsubscribe = onSnapshot(courseCollection, (snapshot) => {
+//     const courseData = snapshot.docs.map((doc) => {
+//       const { CourseName, imageUrl } = doc.data();
+//       return { CourseName, imageUrl, id: doc.id };
+//     });
+//     setCourses(courseData);
+//   });
+//   return unsubscribe;
+// }, [db]);
 
 
   const handleLogout = async () => {
@@ -162,7 +178,7 @@ useEffect(() => {
           {courses.map((course) => (
                 <div className="courseBox"  key = {course.id}>
                     <Link href={ user ? `/${course.id}` : "#courseTitle"}>
-                        <Image src={course.image} className="courseImg"/>
+                        <img src={course.image} className="courseImg" width="250" height="100"/>
                         <p className = "subtext">{course.CourseName}</p>
                     </Link>
                 </div>

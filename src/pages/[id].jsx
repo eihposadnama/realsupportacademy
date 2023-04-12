@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google';
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
-import {auth} from '../../backend/firebase';
+import {initFirebase, db, auth} from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
@@ -41,6 +41,7 @@ export default function Home({ course }) {
     const [user, setUser] = useState('');
     const [enrolled, setEnrolled] = useState(false);
     const [message, setMessage] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
     useEffect (() => {
     
@@ -101,6 +102,12 @@ export default function Home({ course }) {
     }, [enrolled, user.uid, course]);
 
 
+    // useEffect(async () => {
+    //     const db = getFirestore();
+    //     const courseRef = doc(db, 'Courses', course.id);
+    //     const courseDoc = await getDoc(courseRef);
+    //     setImageUrl(courseDoc.get("image"))
+    // }, [course.id, course.image]);
     
   return (
     <>
@@ -148,7 +155,7 @@ export default function Home({ course }) {
                         )}        
                     </div>
                     <div className = "image-container">
-                        <Image className = "images" src={require("src/images/laptop2.png")} alt = "laptop2"/>
+                        <img className = "images" src={course.image} alt = "laptop2"/>
                     </div>
                 </div>
                 {enrolled ? (
