@@ -10,6 +10,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import { logout } from '../../backend/firebase';
 import { useEffect, useState } from 'react';
 
+import Navbar from '@/components/components/Navbar/navbar';
 
 //import { HashLink } from 'react-router-hash-link';
 const inter = Inter({ subsets: ['latin'] })
@@ -61,7 +62,7 @@ export default function Home() {
   return (
     <>
         <section className = "entry">
-            <nav className="navbar">
+            <nav>
                 <Link href="/">
                     <Image className="logo" src={require("src/images/RS.png")} alt="RS Logo"/>
                 </Link>
@@ -82,7 +83,7 @@ export default function Home() {
                     <li><Link href="#Contact">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
-                    <i className="fas fa-bars"></i>
+                    <Navbar user={user} handleLogout={handleLogout} />
                 </button>
             </nav>
             <div className="entry-area">

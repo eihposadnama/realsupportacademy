@@ -21,6 +21,8 @@ const inter = Inter({ subsets: ['latin'] })
 //import '@/styles/globals.css'
 //import '@/styles/style_1.css'
 
+import Navbar from '@/components/components/Navbar/navbar';
+
 export default function Home() {
   const [user, setUser] = useState('');
   const [courses, setCourses] = useState([]);
@@ -154,7 +156,7 @@ export default function Home() {
                 <li><Link href="/#Contact">Contact</Link></li>
               </ul>
               <button className = "hamburger" id = "hamburger">
-                <i className="fas fa-bars"></i>
+                <Navbar user={user} handleLogout={handleLogout} />
               </button>
 
             </nav>

@@ -3,6 +3,7 @@ import ForumCategory from "src/components/components/ForumCategory/forumCategory
 import ForumTopic from "src/components/components/ForumTopic/forumTopic";
 import ForumPost from "src/components/components/ForumPost/forumPost";
 import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
+import Navbar from '@/components/components/Navbar/navbar';
 import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore, query, orderBy } from 'firebase/firestore';
 import { initFirebase, db, auth, useAuthState } from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
@@ -288,7 +289,7 @@ export default function Forum() {
                             <li><Link href="/">Contact</Link></li>
                         </ul>
                         <button className="hamburger" id="hamburger">
-                            <i className="fas fa-bars"></i>
+                            <Navbar user={user} handleLogout={handleLogout} />
                         </button>
 
                     </nav>

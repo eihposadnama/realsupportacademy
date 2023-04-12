@@ -6,6 +6,7 @@ import { getAuth, signOut } from 'firebase/auth';
 import {useRouter} from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+ import Navbar from '@/components/components/Navbar/navbar';
 export default function AddPost() {
     // const [postsData, setPosts] = useState([{
     //     id: currentID,
@@ -116,7 +117,7 @@ export default function AddPost() {
                             <li><Link href="/">Contact</Link></li>
                         </ul>
                         <button className="hamburger" id="hamburger">
-                            <i className="fas fa-bars"></i>
+                            <Navbar user={user} handleLogout={handleLogout} />
                         </button>
 
                     </nav>

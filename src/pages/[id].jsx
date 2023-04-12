@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 import {initFirebase, db, auth} from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import Navbar from '@/components/components/Navbar/navbar';
 
 // import logout
 import { logout } from '../../backend/firebase';
@@ -133,7 +134,7 @@ export default function Home({ course }) {
                     <li><Link href="/">Contact</Link></li>
                 </ul>
                 <button className = "hamburger" id = "hamburger">
-                    <i className="fas fa-bars"></i>
+                    <Navbar user={user} handleLogout={handleLogout} />
                 </button>
              </nav>
 
