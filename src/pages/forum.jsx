@@ -3,7 +3,7 @@ import ForumCategory from "src/components/components/ForumCategory/forumCategory
 import ForumTopic from "src/components/components/ForumTopic/forumTopic";
 import ForumPost from "src/components/components/ForumPost/forumPost";
 import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
-import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore, query, orderBy } from 'firebase/firestore';
 import { initFirebase, db, auth, useAuthState } from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -101,7 +101,7 @@ export default function Forum() {
 
         const fetchForumMessages = async () => {
 
-            const forumMessagesSnapshot = await getDocs(forumMessagesRef);
+            const forumMessagesSnapshot = await getDocs(query(forumMessagesRef, orderBy("Time", "desc")));
             console.log("Calling DB");
             const forumMessagesData =forumMessagesSnapshot.docs.map((doc) => {
                 const {Title, Description, Time, User} = doc.data();
