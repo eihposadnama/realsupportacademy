@@ -3,7 +3,7 @@ import ForumCategory from "src/components/components/ForumCategory/forumCategory
 import ForumTopic from "src/components/components/ForumTopic/forumTopic";
 import ForumPost from "src/components/components/ForumPost/forumPost";
 import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
-import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore, query, orderBy } from 'firebase/firestore';
 import { initFirebase, db, auth, useAuthState } from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -88,36 +88,37 @@ export default function Forum() {
     var today = new Date()
 
     useEffect(() => {
+        if(courseId){
+            console.log("Course ID: ", courseId);
 
-        console.log("Course ID: ", courseId);
-
-        const db = getFirestore();
-        const coursRef = doc(db, 'Courses', courseId);
+            const db = getFirestore();
+            const coursRef = doc(db, 'Courses', courseId);
+        
+            console.log("Course", courseId)
+            console.log("CourseRef", coursRef)
+            const forumMessagesRef = collection(coursRef, 'forumMessages');
     
-        console.log("Course", courseId)
-        console.log("CourseRef", coursRef)
-        const forumMessagesRef = collection(coursRef, 'forumMessages');
-
-
-        const fetchForumMessages = async () => {
-
-            const forumMessagesSnapshot = await getDocs(forumMessagesRef);
-            console.log("Calling DB");
-            const forumMessagesData =forumMessagesSnapshot.docs.map((doc) => {
-                const {Title, Description, Time, User} = doc.data();
-                console.log(Time);
-                return {
-                    id: doc.id,
-                    Title: Title,
-                    Description: Description,
-                    Time: Time ? Time.toDate().toLocaleString():((today.getDate())<10?'0':'') + today.getDate() + "/" + ((today.getMonth() + 1)<10?'0':'')+today.getMonth()+1 + "/" + ((today.getFullYear)<10?'0':'')+today.getFullYear()  + ", " + ((today.getHours)<10?'0':'')+today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes() + ':' + ((today.getSeconds())<10?'0':'')+today.getSeconds(),   //date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-                    User: User,
-                };
-            });
-            setPosts(forumMessagesData);
-        };
-        fetchForumMessages();
-
+    
+            const fetchForumMessages = async () => {
+    
+                const forumMessagesSnapshot = await getDocs(query(forumMessagesRef, orderBy("Time","desc")));
+                console.log("Calling DB");
+                const forumMessagesData =forumMessagesSnapshot.docs.map((doc) => {
+                    const {Title, Description, Time, User} = doc.data();
+                    console.log(doc.data());
+                    return {
+                        id: doc.id,
+                        Title: Title,
+                        Description: Description,
+                        Time: Time ? Time.toDate().toLocaleString():((today.getDate())<10?'0':'') + today.getDate() + "/" + ((today.getMonth() + 1)<10?'0':'')+(today.getMonth()+1) + "/" + ((today.getFullYear)<10?'0':'')+today.getFullYear()  + ", " + ((today.getHours)<10?'0':'')+today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes() + ':' + ((today.getSeconds())<10?'0':'')+today.getSeconds(),   //date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+                        User: User,
+                    };
+                });
+                setPosts(forumMessagesData);
+            };
+            fetchForumMessages(); 
+        }
+        
     }, [courseId]);
 
     console.log(postsData);

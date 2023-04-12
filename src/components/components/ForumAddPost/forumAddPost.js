@@ -8,8 +8,8 @@ import { getAuth } from 'firebase/auth';
 export default function ForumAddPost(props){
 
 
-    const [title, setTitle] = useState("Dummy Title");
-    const [description, setDescription] = useState('The content of a textarea goes in the value attribute');
+    const [title, setTitle] = useState("Add Title here:");
+    const [description, setDescription] = useState('Add message here:');
     const [user, setUser] = useState('');
     const courseId = props.courseId;
 
@@ -34,9 +34,10 @@ export default function ForumAddPost(props){
             Title: title,
             Description: description,
             User: user,
+            // Time: Date.now(),
             Time: serverTimestamp(),
         };
-
+        // console.log(await serverTimestamp());
         addDoc(forumMessagesRef, newPost)
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
@@ -61,7 +62,7 @@ export default function ForumAddPost(props){
     };
 
 
-    let headerPost = props.WithTitle ? <ForumTopic PostName={props.PostName} UserName={props.UserName} Date={props.Date}/> : <input onChange={handleTitle}/>;
+    let headerPost = props.WithTitle ? <ForumTopic PostName={props.PostName} UserName={props.UserName} Date={props.Date}/> : <input value={title} onChange={handleTitle}/>;
     let currentTitle = props.WithTitle ? props.PostName: title;
 
     return(
