@@ -5,9 +5,13 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import { initFirebase, db, auth } from '../../backend/firebase';
 import firebase_app from '../../backend/firebase';
+import {getStorage, ref, getDownloadURL} from "firebase/storage";
 // import {auth} from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
-import { getDocs, getFirestore, collection } from "firebase/firestore";
+import { getDocs, getFirestore, collection, updateDoc, doc } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { app } from '../../backend/firebase';
+import { onSnapshot } from "firebase/firestore";
 // import logout
 import { logout } from '../../backend/firebase';
 import { useEffect, useState } from 'react';
@@ -29,6 +33,13 @@ export default function Home() {
       return unsubscribe;
   }, []);
   
+
+  const storage = getStorage(app);
+  
+  const storageRef = ref(storage, )
+
+
+
   useEffect(() => {
     console.log("starting to get courses")
     const courseCollection = collection(db, "Courses");
@@ -44,15 +55,48 @@ export default function Home() {
     //         console.log(courses);
     //     })
   
+  //   getDocs(courseCollection).then((snapshot) => {
+  //     const courseData = snapshot.docs.map((doc) => {
+  //       const { CourseName, image} = doc.data(); 
+  //       console.log("course image: ", image);
+  //       return { CourseName, image, id: doc.id };
+  //     });
+  //     console.log("Courses: ", courses);
+  //     setCourses(courseData);
+  //   })
+  // }, []);  
+
     getDocs(courseCollection).then((snapshot) => {
-      const courseData = snapshot.docs.map((doc) => {
-        const { CourseName} = doc.data(); 
-        return { CourseName, id: doc.id };
-      });
-      console.log("Courses: ", courses);
-      setCourses(courseData);
-    })
-  }, []);  
+      const promises = snapshot.docs.map((doc) => {
+        const { CourseName, image} = doc.data();
+        const imageRef = ref(storage, image);
+        return getDownloadURL(imageRef).then((url) => {
+          const courseRef = doc(collection(db, "Courses"), doc.id);
+          return updateDoc(courseRef, {image: url})
+        }).catch((error) => {
+          console.log(error);
+        });
+    });
+    Promise.all(promises).then(() => {
+      console.log("All courses updated with image URLs");
+    }).catch((error) => {
+      console.error("Error updating course documents with image URLs", error);
+    });
+  });
+}, []);
+
+useEffect(() => {
+  const courseCollection = collection(db, "courses");
+  const unsubscribe = onSnapshot(courseCollection, (snapshot) => {
+    const courseData = snapshot.docs.map((doc) => {
+      const { CourseName, imageUrl } = doc.data();
+      return { CourseName, imageUrl, id: doc.id };
+    });
+    setCourses(courseData);
+  });
+  return unsubscribe;
+}, [db]);
+
 
   const handleLogout = async () => {
       
@@ -66,7 +110,7 @@ export default function Home() {
           console.error(error)
         });
   }
-
+  
 
 // ERROR, 
 
@@ -118,7 +162,7 @@ export default function Home() {
           {courses.map((course) => (
                 <div className="courseBox"  key = {course.id}>
                     <Link href={ user ? `/${course.id}` : "#courseTitle"}>
-                        <Image src={require("src/images/laptop_spare.png")} className="courseImg"/>
+                        <Image src={course.image} className="courseImg"/>
                         <p className = "subtext">{course.CourseName}</p>
                     </Link>
                 </div>

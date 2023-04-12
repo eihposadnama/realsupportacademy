@@ -29,6 +29,7 @@ export default function Forum() {
 
     const router = useRouter();
     let { courseId } = router.query;
+    console.log("This is course ID " + courseId);
     // const { courseIdtemp } = router.query;
     // const courseId = courseIdtemp;
     // const user = useAuthState(auth);
@@ -203,32 +204,7 @@ export default function Forum() {
 
     function PostRender() {
 
-        /*
-        let postsData = [
-            [
-                "Test A",
-                "TBA",
-                "1/1/2023",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            ],
-            [
-                "Test B",
-                "TBA",
-                "1/1/2023",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            ],
-            [
-                "Test C",
-                "TBA",
-                "1/1/2023",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            ]
-        ]
-
-         */
-
-        //setPosts(prevPosts => prevPosts[0].text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
-
+        
 
         let posts = [];
         posts /** @type {ForumPost[]} */ = postsData.map((postData) => {
@@ -256,7 +232,6 @@ export default function Forum() {
                     {posts}
                 </div>
                 <a className="Back" onClick={OnClickBack}>Back</a>
-                <a className="Back" h>Add Post</a>
             </div>
         )
     }
