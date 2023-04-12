@@ -20,6 +20,7 @@ const inter = Inter({ subsets: ['latin'] })
 //import {Link} from "react-router-dom";
 //import '@/styles/globals.css'
 //import '@/styles/style_1.css'
+import Navbar from '@/components/components/Navbar/navbar';
 
 export default function Home() {
   const [user, setUser] = useState('');

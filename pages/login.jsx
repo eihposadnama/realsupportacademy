@@ -10,6 +10,7 @@ import { signInWithEmailAndPassword, getAuth , signOut} from "firebase/auth";
 import { useRouter } from 'next/navigation'
 import {auth} from '../../backend/firebase';
 //import { getAuth, signOut } from 'firebase/auth';
+import Navbar from '@/components/components/Navbar/navbar';
 
 // import logout
 import { logout } from '../../backend/firebase';

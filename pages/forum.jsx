@@ -6,6 +6,7 @@ import ForumAddPost from "src/components/components/ForumAddPost/forumAddPost";
 import { collection, addDoc, getDocs , serverTimestamp, doc, getFirestore } from 'firebase/firestore';
 import { initFirebase, db, auth, useAuthState } from '../../backend/firebase';
 import { getAuth, signOut } from 'firebase/auth';
+import Navbar from '@/components/components/Navbar/navbar';
 
 import {useRouter} from "next/router";
 import Link from "next/link";
