@@ -9,7 +9,7 @@ export default function ForumAddPost(props){
 
 
     const [title, setTitle] = useState("Dummy Title");
-    const [description, setDescription] = useState('The content of a textarea goes in the value attribute');
+    const [description, setDescription] = useState('Add message here');
     const [user, setUser] = useState('');
     const courseId = props.courseId;
 

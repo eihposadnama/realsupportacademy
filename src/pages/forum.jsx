@@ -110,7 +110,7 @@ export default function Forum() {
                     id: doc.id,
                     Title: Title,
                     Description: Description,
-                    Time: Time ? Time.toDate().toLocaleString():((today.getDate())<10?'0':'') + today.getDate() + "/" + ((today.getMonth() + 1)<10?'0':'')+today.getMonth()+1 + "/" + ((today.getFullYear)<10?'0':'')+today.getFullYear()  + ", " + ((today.getHours)<10?'0':'')+today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes() + ':' + ((today.getSeconds())<10?'0':'')+today.getSeconds(),   //date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+                    Time: Time ? Time.toDate().toLocaleString():((today.getDate())<10?'0':'') + today.getDate() + "/" + ((today.getMonth() + 1)<10?'0':'')+(today.getMonth()+1) + "/" + ((today.getFullYear)<10?'0':'')+today.getFullYear()  + ", " + ((today.getHours)<10?'0':'')+today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes() + ':' + ((today.getSeconds())<10?'0':'')+today.getSeconds(),   //date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + " " today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
                     User: User,
                 };
             });
