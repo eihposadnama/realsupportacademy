@@ -22,10 +22,14 @@ export default function ForumAddPost(props){
 
     }, []);
 
-    const db = getFirestore();
-    const coursRef = doc(db, 'Courses', courseId);
+    let forumMessagesRef = null;
 
-    const forumMessagesRef = collection(coursRef, 'forumMessages');
+    if(courseId) {
+        const db = getFirestore();
+        const coursRef = doc(db, 'Courses', courseId);
+    
+        forumMessagesRef = collection(coursRef, 'forumMessages');
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,6 +48,10 @@ export default function ForumAddPost(props){
         });
 
     }
+
+
+
+
 
     // const [textarea, setTextarea] = useState(
     //     "The content of a textarea goes in the value attribute"
