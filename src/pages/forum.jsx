@@ -310,7 +310,17 @@ export default function Forum() {
                         <ul className="nav" id="navlist">
                             <li><Link href="/#about-us">About Us</Link></li>
                             <li><Link href="/courses">Courses</Link></li>
-                            <li><Link href="/login">Login</Link></li>
+                            {user == null ? (
+                                <li>
+                                    <Link href="/login">Login</Link>
+                                </li> 
+                                ) : (
+                                <li>
+                                    <Link href="/" onClick={handleLogout}>Logout</Link>
+                                </li>
+                            ) 
+                        
+                            }
                             <li><Link href="/#Contact">Contact</Link></li>
                         </ul>
                         <button className="hamburger" id="hamburger">
